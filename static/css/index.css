@@ -1,0 +1,18 @@
+/* 首页侧边栏css */
+.menu_head{width:85px;height:40px;line-height:40px;padding-left:10px;font-size:16px;;cursor:pointer;position:relative;margin:0;}
+.menu_body{width:85px;overflow:hidden; font-size:14px;padding-left:10px;}
+.menu_body a{display:block;text-decoration:none;position:relative;margin:5px 0;}
+.menu_body a:hover{text-decoration:none;}
+
+.round{width:16px;height:16px;display: inline-block;font-size:20px;line-heigth:16px;text-align:center;color:#f00;text-decoration:none}
+.round:hover{color:blue;text-decoration:none} 
+
+/* 图片右边狂滚动效果css */
+.rightBar{
+    overflow: hidden;
+    display: block;
+    border: 1px solid #E1E1E1; margin-top: 12px;
+    position: relative;
+    width: 90px;
+    height: 800px;
+}

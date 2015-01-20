@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} </title>
+    <meta name="baidu-site-verification" content="AUWbtX9ZHz">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="renderer" content="webkit">
+    <meta name="fragment" content="!">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <link rel="shortcut icon" type="image/x-icon" href="http://s.lovewith.me/static/images/favicon.ico">
+    <link rel="stylesheet" href="/static/css/base.css?t=205615">
+    <link rel="stylesheet" href="/static/css/index.css">
+    {% block css %}{% endblock %}
+<!--[if lt IE 9]>
+    <script src="/static/js/lib/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="/static/js/lib/respondJs/dest/respond.min.js"></script>
+    <script src="http://cdn.bootcss.com/placeholders/3.0.2/placeholders.min.js"></script>
+<![endif]-->
+</head>
+<body>
+    <audio loop="true" autoplay="true">
+        <source src="/static/media/backgroundmusic.mp3" type="audio/mpeg">
+        <source src="/static/media/backgroundmusic.ogg" type="audio/mpeg">
+    </audio>
+    <div class="contain" ms-controller="home">
+    {% block side %}
+        <!-- 代码开始 -->
+        <div class="menu menu_list" id="firstpane">
+            <p class="menu_head">关于相原</p>
+                <div style="display:none" class="menu_body">
+                    {% for data in home_data.1 %}
+                    <a href="#!/{{ data.article_template }}/1/{{ data.sub_type }}/">{{ data.sub_type }}</a>
+                    {% endfor %}
+                </div>
+            <p class="menu_head">相原动态</p>
+            <div style="display:none" class="menu_body">
+                    {% for data in home_data.2 %}
+                    <a href="#!/{{ data.article_template }}/2/{{ data.sub_type }}/">{{ data.sub_type }}</a>
+                    {% endfor %}
+            </div>
+            <p class="menu_head">相原服务</p>
+            <div style="display:none" class="menu_body">
+                    {% for data in home_data.3 %}
+                    <a href="#!/{{ data.article_template }}/3/{{ data.sub_type }}/">{{ data.sub_type }}</a>
+                    {% endfor %}
+            </div>
+            <p class="menu_head">相原作品</p>
+            <div style="display:none" class="menu_body">
+                    {% for data in home_data.4 %}
+                    <a href="#!/{{ data.article_template }}/4/{{ data.sub_type }}/">{{ data.sub_type }}</a>
+                    {% endfor %}
+            </div>
+            <p class="menu_head">相原邀请</p>
+            <div style="display:none" class="menu_body">
+                <a href="#!/jobs/theory/">人才理念</a>
+                <a href="#!/article_list/5/校园招聘/">校园招聘</a>
+                <a href="#!/jobs/social/">社会招聘</a>
+            </div>
+            <p class="menu_head">联系我们</p>
+            <div style="display:none" class="menu_body">
+                <a href="#!/contact/">联系我们</a>
+            </div>
+            <p class="menu_head">下载中心</p>
+            <div style="display:none" class="menu_body">
+                <a href="#!/download/集团手册/">集团手册</a>
+                <a href="#!/download/室内手册/">室内手册</a>
+                <a href="#!/download/项目物料/">项目物料</a>
+            </div>
+        </div>
+        <!-- 代码结束 -->
+        <!--side menu end-->
+    {% endblock %}
+        <div class="row">
+            <div id="_content">
+            {% block main %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <!--script block start-->
+    <script src="/static/js/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/static/js/avalon.js?t=205615"></script>
+    <script src="/static/js/lib/slides-1.1.1-min.js"></script>
+    <script src="/static/js/lib/flexslider-min.js"></script>
+    <script>
+        avalon.config({
+            interpolate: ["{--","--}"]
+        });
+    </script>
+    <script  src="/static/js/page/index.js"></script>
+    <script type=text/javascript>
+    $(document).ready(function(){
+        $("#firstpane p.menu_head").mouseover(function(){
+            $(this).addClass("current").next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+            $(this).siblings().removeClass("current");
+        });
+    });
+    </script>
+    {% block script %}{% endblock %}
+</body>
+</html>

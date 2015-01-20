@@ -1,0 +1,15 @@
+<div id ="_article" ms-controller="article">
+    <div class="box_back">
+        <a ms-attr-href="#!/article_list/{--article_type_id--}/{--sub_type--}/">back</a>
+    </div>
+    <div class="banner_one" >
+        <div ms-repeat-el="article"><img ms-src="el.url" width="760" height="318" ms-if="el.url">
+            <div class="single_title">
+                <p ms-text="el.title"><p>
+            </div>
+            <div class="single_content">
+                <p ms-text="el.content" ></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div id="_jobs" ms-controller="jobs">
+    <div ms-if=boolvalue.theory class="theory">
+        <p>
+            <p>“4+1” 人才邀请原则</p>
+            <p>相对纯粹的品格和性情；</p>
+            <p>良好的文化素养和个人修养；</p>
+            <p>良好的专业能力和学习能力；</p>
+            <p>良好的职业操守和职业精神；</p>
+            <p>+1 能良好地融入己在的团队成员，共同营塑充满幸福感的企业。</p>
+        </p>
+    </div>
+    <div id="campus" ms-if=boolvalue.campus>
+        校园招聘
+    </div>
+    <div ms-if=boolvalue.social>
+        <div class="box_title" ms-text="name+'全部子公司'"> </div>
+           <table class="dataintable" cellspacing="0" border="0">
+                <tbody>
+                <tr>
+                    <th width="60%">职位</th>
+                    <th width="10%">人数</th>
+                    <th width="10%">性别</th>
+                    <th width="10%">学历</th>
+                    <th width="10%">工作地点</th>
+                </tr>
+                    <tr ms-repeat-el="jobList">
+                        <td > <a ms-attr-href=" '#!/job_detail/' + el.id" ms-text="el.jobs"></a></td>
+                        <td > <a ms-attr-href=" '#!/job_detail/' + el.id" ms-text="el.number"></a></td>
+                        <td > <a ms-attr-href=" '#!/job_detail/' + el.id" ms-text="el.gender"></a></td>
+                        <td > <a ms-attr-href=" '#!/job_detail/' + el.id" ms-text="el.education"></a></td>
+                        <td > <a ms-attr-href=" '#!/job_detail/' + el.id" ms-click="test(el)" ms-text="el.workplace"></a></td>
+                    </tr>
+                </tbody>
+           </table>
+        </div>
+    </div>
+</div>

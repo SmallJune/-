@@ -1,0 +1,17 @@
+<div id ="_article" ms-controller="article">
+    <div class="flex-container">
+        <div class="flexslider">
+            <ul class="slides">
+                <li ms-repeat-el="articlelist">
+                    <a href="#" ms-if="el.article_attachment[0]"><img ms-src="el.article_attachment[0].url" width="760" height="318" style="width: 760px;" ></a>
+                    <div class="banner_botton">
+                        <span ms-text="el.title" class="title_size"></span>
+                        <div class="content_size">
+                            <div>{--el.content|html--}</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

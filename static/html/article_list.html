@@ -1,0 +1,12 @@
+<div id ="_article_list" ms-controller="article_list">
+    <div style="height: 370px;">
+        <div ms-each-el="articlelist">
+            <div class="col-md-5 img_block" ms-class-2="black_img:el.article_attachment[0]" ms-class="l:(parseInt($index/3)%2)" ms-class-1="r:!(parseInt($index/3)%2)">
+                <a ms-attr-href=" '#!/'+el.article_attachment[0].article_template+'/' + el.article_id" ms-attr-title="el.article_attachment[0].title" >
+                    <img border="0" ms-attr-src="el.article_attachment[0].url" width="110" height="110" ms-attr-alt="el.article_attachment[0].title" >
+                </a>
+            </div>
+        </div>
+    </div>
+    <div align="right" class="pull-right"><a ms-attr-href="#!/article_list/{--article_type--}/{--sub_type--}/{--page-1--}" ms-if="(page-1)">prev</a><a ms-attr-href="#!/article_list/{--article_type--}/{--sub_type--}/{--page+1--}" ms-if="next">next</a></div>
+</div>

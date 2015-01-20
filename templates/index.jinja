@@ -1,0 +1,42 @@
+{% extends "base.jinja" %}
+
+{% block title %} {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/index.css?t=205615"/>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+    $(function(){
+        $('#sildes').olvSlides(
+            {
+                thumb:true,
+                thumbPage:true,
+                thumbDirection:"Y",
+                effect:'fade'
+
+            }
+        );
+    })
+</script>
+{% endblock %}
+{% block main %}
+<div class="wrap">
+    <div id="sildes">
+        <div class="control">
+            <ul class="change">
+            </ul>
+        </div>
+        <div class="thumbWrap">
+            <div class="thumbCont">
+                <ul>
+                    {% for attachment in attachments %}
+                    <li><div><img src="{{ attachment.url }}" width="60" height="45" text="{{ attachment.content }}" bigimg="{{ attachment.url }}" width="760" height="353" alt="{{ attachment.title }}"></div></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
