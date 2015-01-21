@@ -48,6 +48,7 @@ class ArticleAttachment(models.Model):
     )
     attachment_type = models.CharField(choices=attachment_type, max_length=2, default='PI', verbose_name=u'附件内容')
     url = models.FileField(max_length=200, upload_to=upload_dir, verbose_name=u'作品地址')
+    cover_path = models.CharField(max_length=200, verbose_name=u'封面地址')
     article = models.ForeignKey(Article, verbose_name=u'作品')
     place = models.IntegerField(verbose_name=u'作品顺序')
 
@@ -58,13 +59,16 @@ class ArticleAttachment(models.Model):
         super(ArticleAttachment, self).save()
         old_filename = self.url.path
         old_name = self.url.url
-        now = "/%s.jpg" %(int(time.time()*1000))     # 获取当前时间的时间戳，毫秒为单位
+        now = "/%s.png" %(int(time.time()*1000))     # 获取当前时间的时间戳，毫秒为单位
+        cover_now = "/%s!110*110.png" %(int(time.time()*1000))     # 获取当前时间的时间戳，毫秒为单位
         new_filename = '%s%s' %(old_filename[:old_filename.rfind("/")], now)
+        cover_filename = '%s%s' %(old_filename[:old_filename.rfind("/")], cover_now)
         os.rename(old_filename, new_filename)
         self.url = "/static/upload/%s%s" %(self.upload_dir, now)
         # total_path = "%s%s" %(ROOT, self.url)
         source_image = Image.open(new_filename)
         target = (760, 350)
+        cover_target = (110, 110)
         source = source_image.size
         if (source[0]/target[0]) >= (source[1]/target[1]):
             rate = source[1]/target[1]
@@ -72,21 +76,31 @@ class ArticleAttachment(models.Model):
             left = cut/2
             right = source[0]-cut/2
             new_image = source_image.crop((int(left), 0, int(right), int(source[1])))
+            # 制造一张封面小图
+            cover_cut = 410/rate/2
+            cover_image = new_image.crop((int(left+cover_cut), 0, int(right-cover_cut), int(source[1])))
         else:
             rate = source[0]/target[0]
             cut = source[1] - target[1]*rate
             top = cut/2
             bottom = source[1]-cut/2
             new_image = source_image.crop((0,int(top),int(source[0]), int(bottom)))
+            # 制造一张封面小图
+            cover_cut = (int(source[0])-(int(bottom)-int(top)))/2
+            cover_image = new_image.crop((int(0+cover_cut), 0, int(source[0]-cover_cut), int(bottom-top)))
+            # with open('/var/www/origingroup/log', 'a+') as f:
+            #     f.write("%s,%s,%s,%s" %(cover_cut, top, source[0]-cover_cut, bottom))
+
+            # cover_image = new_image.crop((int(100),int(top),int(400), int(bottom)))
+
         new_image = new_image.resize(target, Image.ANTIALIAS)
+        cover_image = cover_image.resize(cover_target, Image.ANTIALIAS)
         new_image.save(new_filename)
+        cover_image.save(cover_filename)
+        self.cover_path = "/static/upload/%s%s" %(self.upload_dir, cover_now)
         super(ArticleAttachment, self).save()
 
 
     class Meta:
         verbose_name_plural = u'作品附件'
         db_table = 'og_article_attachment'
-
-
-
-
