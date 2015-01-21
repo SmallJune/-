@@ -16,6 +16,7 @@ def get_attachmennt(article_id):
         attachmennt_datas.append({
             'url': str(sql_data.url),
             'place': sql_data.place,
+            'cover_path': sql_data.cover_path,
             'article_id': sql_data.article_id,
             'id': sql_data.id,
             'attachment_type': sql_data.attachment_type,
