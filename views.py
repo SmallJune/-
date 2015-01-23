@@ -24,7 +24,7 @@ def home(request):
     return render_to_response('index.jinja', {'home_data': home_data, 'attachments': attachments})
 
 def cover(request):
-    return render_to_response('index2.html',)
+    return render_to_response('choose.html',)
 
 
 

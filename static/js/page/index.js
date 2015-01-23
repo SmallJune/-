@@ -1,4 +1,4 @@
-require(["../js/mmRouter", "../js/mmRequest"], function(Router){
+require(["./mmRouter", "./mmRequest"], function(Router){
 //    var data = {
 //        list: [
 //            {
