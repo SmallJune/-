@@ -72,6 +72,7 @@ section {
   list-style: none;
   width: 100%;
   float: left;
+  background: #444;
 }
 
 .nav-collapse li {
@@ -81,7 +82,7 @@ section {
 
 @media screen and (min-width: 40em) {
   .nav-collapse li {
-    width: 25%;
+    width: 10%;
     *width: 24.9%; /* IE7 Hack */
     _width: 19%; /* IE6 Hack */
   }
@@ -91,7 +92,7 @@ section {
   color: #fff;
   text-decoration: none;
   width: 100%;
-  background: #f4421a;
+  background: #444;
   border-bottom: 1px solid white;
   padding: 0.7em 1em;
   float: left;
@@ -100,11 +101,10 @@ section {
 @media screen and (min-width: 40em) {
   .nav-collapse a {
     margin: 0;
-    padding: 1em;
+    padding: 0.5em;
     float: left;
     text-align: center;
     border-bottom: 0;
-    border-right: 1px solid white;
   }
 }
 
@@ -177,7 +177,45 @@ section {
   content:"x";
 }
 
-
+*{padding:0;margin:0}
+body{
+	text-align: center;
+	background-color: #1664ad;
+}
+.ly-plate{
+	position:relative;
+	width:509px;
+	height:509px;
+	margin: 50px auto;
+}
+.rotate-bg{
+	width: 509px;
+	height: 509px;
+	background: url(/static/images/ly-plate.png);
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-top: 0%;
+}
+.ly-plate div.lottery-star{
+	width:214px;
+	height:214px;
+	position:absolute;
+	top:150px;
+	left:147px;
+	/*text-indent:-999em;
+	overflow:hidden;
+	background:url(rotate-static.png);
+	-webkit-transform:rotate(0deg);*/
+	outline:none
+}
+.ly-plate div.lottery-star #lotteryBtn{
+	cursor: pointer;
+	position: absolute;
+	top:0;
+	left:0;
+	*left:-107px
+}
 
 
 
