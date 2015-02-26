@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import json
 from django.http import HttpResponse
-from origingroup.jobs.models import Jobs, Company
+from origingroup.jobs.models import Jobs
 
 
 def home(request, jobs_type='social', company_id=1):

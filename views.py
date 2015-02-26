@@ -1,6 +1,7 @@
 # -*-coding:utf-8 -*-
-from django.http import HttpResponse
 from django.shortcuts import render_to_response
+from article.exampleapi import ExampleApi
+from jobs.tools import log
 from origingroup.article.api import get_attachmennt
 from origingroup.article.models import Article
 
@@ -24,6 +25,10 @@ def home(request):
     return render_to_response('index.jinja', {'home_data': home_data, 'attachments': attachments})
 
 def cover(request):
+    a = ExampleApi.getrandata(6)
+    log(a)
+    a = ExampleApi.bubbleSort(a)
+    log(a)
     return render_to_response('choose.html',)
 
 

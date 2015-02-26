@@ -10,6 +10,8 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+SITE_URL = 'http://origingroup.com.cn/'
+
 MANAGERS = ADMINS
 
 DATABASES = {

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>评论页盖楼引用效果</title>
+    <style type="text/css">
+        
+        .comment
+        {
+            overflow: hidden;
+            padding: 3px;
+            background: #FFFFFF;
+            border: solid 1px #999;
+        }
+         .quoting
+        {
+            overflow: hidden;
+            padding: 3px;
+            background: #FFFFF8;
+            border: solid 1px #999;
+        }
+        .quoting2
+        {
+            margin: 3px 0 0 0;
+            overflow: hidden;
+            background: #FFFFF8;
+            border: solid 1px #999;
+            border-top: 0px;
+        }
+        .top
+        {
+            background: #F8F8F8;
+        }
+         
+        .info
+        {
+            height: 26px;
+            background: #F6F6F6;
+            color: #949494;
+            padding: 0 0 0 20px;
+            text-align:left;
+            vertical-align:bottom;
+        }
+          .quote
+        {
+            padding: 20px;
+ 
+        }
+         .content
+        {
+            height: 36px;
+            background: #FFFFFF;
+            color: #949494;
+            padding: 0 0 0 20px;
+            text-align:left;
+            vertical-align:bottom;
+        }
+    </style>
+    <script type="text/javascript" src="../static/js/lib/jquery-1.4.4-vsdoc.js"></script>
+    <script type="text/javascript">
+        var comments = [
+         { id: "1", parent: "0", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1" },
+        { id: "2", parent: "1", username: "匿名用户", time: "2012-06-04 08:12:13", contents: "**大学发来贺电！", path: "1,2" },
+        { id: "3", parent: "2", username: "匿名用户", time: "2012-06-04 08:12:14", contents: "**大学发来贺电！", path: "1,2,3" },
+        { id: "4", parent: "3", username: "匿名用户", time: "2012-06-04 08:12:15", contents: "**大学发来贺电！", path: "1,2,3,4" },
+        { id: "5", parent: "4", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5" },
+        { id: "6", parent: "5", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6" },
+        { id: "7", parent: "6", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7" },
+        { id: "8", parent: "7", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8" },
+        { id: "9", parent: "8", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9" },
+        { id: "10", parent: "9", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10" },
+        { id: "11", parent: "10", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11" },
+        { id: "12", parent: "11", username: "匿名用户", time: "2012-06-04 08:12:13", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12" },
+        { id: "13", parent: "12", username: "匿名用户", time: "2012-06-04 08:12:14", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13" },
+        { id: "14", parent: "13", username: "匿名用户", time: "2012-06-04 08:12:15", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14" },
+        { id: "15", parent: "14", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15" },
+        { id: "16", parent: "15", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16" },
+        { id: "17", parent: "16", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17" },
+        { id: "18", parent: "17", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18" },
+        { id: "19", parent: "18", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19" },
+        { id: "20", parent: "19", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20" },
+        { id: "21", parent: "20", username: "匿名用户", time: "2012-06-04 08:12:12", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21" },
+        { id: "22", parent: "21", username: "匿名用户", time: "2012-06-04 08:12:13", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22" },
+        { id: "23", parent: "22", username: "匿名用户", time: "2012-06-04 08:12:14", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23" },
+        { id: "24", parent: "23", username: "匿名用户", time: "2012-06-04 08:12:15", contents: "**大学发来贺电！", path: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24" }
+    ];
+        //叠加楼层数
+        var floors = 18;
+ 
+        function GetComments() {
+            var html = "";
+            $.each(comments, function (n, row) {
+                html += "<div class=\"comment\">";
+                html += "   <div class=\"info\">" + row.username +"——"+row.time+ "</div>";
+                if (row.parent != 0) {
+                    html += "<div class=\"quote\">";
+                    html += GetQuoteComments(row.parent);
+                    html += "</div";
+                }
+                html += "   <div class=\"content\">" + row.id + "   " + row.contents + "</div>";
+                html += "   </div>";
+            });
+            $("#commentsid").html(html);
+        }
+ 
+        //引用评论
+        function GetQuoteComments(commentid) {
+            var html = "";
+            $.each(comments, function (n, row) {
+                if(row.id==commentid) {
+                    var list = row.path.split(",");
+                    if (list.length > floors) {
+                        html += BuildComments(list[floors - 1],floors);
+                        html += BuildComments2(row.id, list[floors - 1],list.length);
+                    }
+                    else {
+                        html += BuildComments(row.id,list.length);
+                    }
+                }
+            });
+            return html;
+        }
+        //盖楼样式1
+        function BuildComments(commentid,index) {
+            var html = "";
+            $.each(comments, function (n, row) {
+                if (row.id == commentid) {
+                    if (row.parent == 0) {
+                        html += "        <div class=\"quoting top\">";
+                    }
+                    else {
+                        html += "        <div class=\"quoting\">";
+                    }
+ 
+                    if (row.parent != 0) {
+                        html += BuildComments(row.parent,index-1);
+                    }
+                    if (row.parent == 0) {
+                        html += "<div>原帖  " + row.username + "——" + row.time + "</div>";
+                    }
+                    else {
+                        html += "<div>" + index + "楼  " + row.username + "——" + row.time + "</div>";
+                    }
+                     
+                    html += row.contents;
+                    html += "        </div>";
+                }
+            });
+            return html;
+        }
+        //盖楼样式2
+        function BuildComments2(commentid, stopid,index) {
+            var html = "";
+            $.each(comments, function (n, row) {
+                if (row.id == commentid) {
+                    if (row.parent != stopid) {
+                        html += BuildComments2(row.parent, stopid,index-1);
+                    }
+                    html += "        <div class=\"quoting2\">";
+                    html += "<div>" + index + "楼  " + row.username  +"——"+row.time+ "</div>";
+                    html += row.contents;
+                    html += "        </div>";
+                }
+            });
+            return html;
+        }
+ 
+        $(function () {
+            GetComments();
+        });
+    </script>
+</head>
+<body>
+    <div id="commentsid" style="width: 800px;margin:0 auto">
+    </div>
+</body>
+</html>
