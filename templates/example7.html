@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>局部变量和全局变量</title>
+</head>
+<body>
+<script type="text/javascript">
+var total=100;  //全局变量
+function add(num){
+    var total;  // 局部变量
+    total=2*num;
+    return total;
+}
+</script>
+<p onclick="alert(add(100));">显示局部变量</p>
+<p onclick="alert(total);">显示全局变量</p>
+</body>
+</html>

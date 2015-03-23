@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Ajax - Get</title>
+</head>
+<body>
+    <button id="btnAjaxOld">原始Ajax调用</button><br />
+    <button id="btnAjaxJquery">使用jQuery的load方法</button>
+    <br />
+    <div id="divResult"></div>
+
+
+<script src="/static/js/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+        //或取csrftoken
+        function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            crossDomain: false, // obviates need for sameOrigin test
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type)) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        //开始
+        $(function()
+        {
+            var xhr = new AjaxXmlHttpRequest();
+            $("#btnAjaxJquery").click(function(event)
+            {
+                $("#divResult").load("article/ajax/post/test", {'test':1});
+            });
+
+            $("#btnAjaxOld").click(function(event)
+            {
+                var xhr = new AjaxXmlHttpRequest();
+                xhr.onreadystatechange = function()
+                {
+                    if (xhr.readyState == 4)
+                    {
+                        document.getElementById("divResult").innerHTML = xhr.responseText;
+                    }
+                }
+                xhr.open("GET", "article/ajax/get/test/?test=1", true);
+                xhr.send(null);
+            });
+        })
+
+        //跨浏览器获取XmlHttpRequest对象
+        function AjaxXmlHttpRequest()
+        {
+            var xmlHttp;
+            try
+            {
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e)
+            {
+
+                // Internet Explorer
+                try
+                {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e)
+                {
+
+                    try
+                    {
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    catch (e)
+                    {
+                        alert("您的浏览器不支持AJAX！");
+                        return false;
+                    }
+                }
+            }
+            return xmlHttp;
+        }
+
+</script>
+</body>
+</html>

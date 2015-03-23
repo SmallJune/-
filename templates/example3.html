@@ -1,0 +1,67 @@
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+</head>
+<body>
+<select onchange="alert('选项被改变')"><option>选项一</option><option>选项二</option><option>选项三</option><option>选项四</option></select>
+<form onsubmit="alert('表单被提交');return false;">
+<input type="submit" value="提交">&nbsp;</form>
+<form onreset="alert('表单被重置');return false;">
+<input type="text" value="初始内容"><br>
+<input type="reset" value="重置">&nbsp;</form>
+<input onselect="alert('文本被选择！')" type="text" value="用鼠标选取这里的文字">
+<input onblur="alert('失去焦点')" type="text" value="在这里单击鼠标，再在其他地方单击">
+<input onfocus="alert('获得焦点')" type="text" value="在这里单击鼠标">
+<div><input onkeydown="alert('键盘被按下')" type="" value="在这里按下键盘"></div>
+<div><input onkeypress="alert('键盘被按下后又松开')" type="" value="在这里按下键盘再松开"></div>
+<div><input onkeyup="alert('键盘被松开')" type="" value="在这里松开键盘"></div>
+<div onclick="alert('鼠标被单击')" style="width:200px;height:50px;background-color:#ccc;line-height:50px;text-align:center;">
+在这里单击鼠标</div>
+<div ondblclick="alert('鼠标被双击')" style="width:200px;height:50px;background-color:#ccc;line-height:50px;text-align:center;">
+在这里双击鼠标</div>
+<div onmousedown="alert('鼠标被按下')" style="width:200px;height:50px;background-color:#ccc;line-height:50px;text-align:center;">
+在这里按下鼠标</div>
+<div onmousemove="alert('鼠标被移动')" style="width:200px;height:50px;background-color:#ccc;line-height:50px;text-align:center;">
+在这里移动鼠标</div>
+<div onmouseout="alert('鼠标被移出')" style="width:200px;height:50px;background-color:#ccc;line-height:50px;text-align:center;">
+将鼠标移动到这里再离开</div>
+<div onmouseover="alert('鼠标被移入')" style="width:200px;height:50px;background-color:#ccc;line-height:50px;text-align:center;">
+将鼠标移动到这里</div>
+<div onmouseup="alert('鼠标被松开')" style="width:200px;height:50px;background-color:#ccc;line-height:50px;text-align:center;">
+按下鼠标再松开</div>
+<div id="name1" style="border:1px solid red;padding:10px 10px 10px 10px;" style="border:1px solid red;padding:10px 10px 10px 10px;">
+<div id="name2" style="border:1px solid green;padding:10px 10px 10px 10px;" style="border:1px solid green;padding:10px 10px 10px 10px;">点击</div>
+</div>
+<div id="info"></div>
+<table>
+    <tr>
+        <td>用户名：</td>
+        <td><input id="demo_input1" type="text" /></td>
+        <td>密码：</td>
+        <td><input id="demo_input2" type="text" /></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><input id="demo_button1" type="button" value="设置Cookie" /></td>
+        <td colspan="2" align="center"><input id="demo_button2" type="button" value="获取Cookie" /></td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    document.getElementById("demo_button1").onclick=function(){
+        var cookie_username="username="+escape(document.getElementById("demo_input1").value)+";"+
+                        "expire="+((new Date()).getTime()+600*1000);
+        var cookie_password="password="+escape(document.getElementById("demo_input2").value)+";"+
+                        "expire="+((new Date()).getTime()+600*1000);
+        document.cookie=cookie_username;
+        document.cookie=cookie_password;
+    }
+    document.getElementById("demo_button2").onclick=function(){
+        var cookieObj=getCookieObj();
+        alert(
+            "用户名："+unescape(cookieObj.username)+"\n"+
+            "密码："+unescape(cookieObj.password)
+        );
+    }
+</script>
+</body>
+</html>

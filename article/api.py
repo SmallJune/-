@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import json
 from django.http import HttpResponse
+from django.shortcuts import render_to_response
 from origingroup.article.models import ArticleType, Article, ArticleAttachment 
 
 def get_attachmennt(article_id):
@@ -67,4 +68,33 @@ def article_info(request, article_id):
         })
     data = json.dumps(article_info_datas)
     return HttpResponse(data)
+
+def get_test(request):
+    test = request.GET.get('test')
+    data = [{"pkid":"0997","ProvinceId":"XJ","CityName":"阿克苏","CityNameEn":"Akesu","PostCode":"843000","isHotCity":False},{"pkid":"0412","ProvinceId":"LN","CityName":"鞍山","CityNameEn":"Anshan","PostCode":"114000","isHotCity":False}]
+    if test:
+        result = {'status':1001, 'data': data}
+    else:
+        result = {'status': 4004, 'data': []}
+    return HttpResponse(json.dumps(result))
+
+def post_test(request):
+    test = request.POST.get('test')
+    data = [{"pkid":"0997","ProvinceId":"XJ","CityName":"阿克苏","CityNameEn":"Akesu","PostCode":"843000","isHotCity":False},{"pkid":"0412","ProvinceId":"LN","CityName":"鞍山","CityNameEn":"Anshan","PostCode":"114000","isHotCity":False}]
+    if test:
+        result = {'status':1001, 'data': data}
+    else:
+        result = {'status': 4004, 'data': []}
+    return HttpResponse(json.dumps(result))
+
+def json_test(request):
+    json_data = json.loads(request.GET.get('data'))
+    data = json_data
+    if data:
+        result = {'status':1001, 'data': data}
+    else:
+        result = {'status': 4004, 'data': []}
+    return HttpResponse(json.dumps(result))
+
+
 

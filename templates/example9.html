@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Hello World jQuery!</title>
+    <script  src="/var/www/ownjects/origingroup/static/js/lib/jquery-1.4.4-vsdoc.js"></script>
+</head>
+<body>
+    <div id="divMsg">Hello World!</div>
+    <input id="btnShow" type="button" value="显示" />
+    <input id="btnHide" type="button" value="隐藏" /><br />
+    <input id="btnChange" type="button" value="修改内容为 Hello World, too!" />
+    <input id="btnInsert" type="button" value="插入 Hello men！" />
+    <div id="Insert"></div>
+    <script type="text/javascript" >
+        $("#btnShow").bind("click", function(event) { $("#divMsg").show(); });
+        $("#btnHide").bind("click", function(event) { $("#divMsg").hide(); });
+        $("#btnChange").bind("click", function(event) { $("#divMsg").html("Hello World, too!"); });
+        $("#btnInsert").bind("click", function(event) { $("#Insert").html("Hello men!")});
+    </script>
+</body>
+</html>

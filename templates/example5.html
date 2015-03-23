@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>效果：鼠标在图片上滚动，图片放大或缩小</title>
+</head>
+<body>
+<img src="http://f.hiphotos.baidu.com/super/whfpf%3D425%2C260%2C50/sign=c20c040174cf3bc7e8559eacb73d8e93/caef76094b36acaf8bd86ef078d98d1001e99c86.jpg" />
+<br /><br /><br /><br />
+<img src="http://f.hiphotos.baidu.com/super/whfpf%3D425%2C260%2C50/sign=c20c040174cf3bc7e8559eacb73d8e93/caef76094b36acaf8bd86ef078d98d1001e99c86.jpg" />
+<script language="JavaScript" type="text/javascript">
+function fun(e){
+    var e=e||event;
+    var detail=e.detail||parseInt(-e.wheelDelta/40);
+    this.setAttribute("height",this.offsetHeight+4*detail);
+}
+
+function mouseWheel(ele,fun){
+   ele.onmousewheel=fun;
+}
+
+for(var imgs=document.getElementsByTagName("img"),len=imgs.length,i=0;i<len;i++){
+    mouseWheel(imgs[i],fun)
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="demo"><div>子节点一</div><div>子节点二</div><div>子节点三</div></div>
+<input id="demo1" type="button" value="点击这里显示this" />
+<script src="/var/www/ownjects/origingroup/static/js/example2.js"></script>
+<script type="text/javascript">
+    document.getElementById("demo").onclick=function(){
+        alert(
+            "第一个子节点："+this.firstChild+"\n"+
+            "第一个子节点的类型是："+this.firstChild.nodeType+"\n"+
+            "第一个子节点的名称是："+this.firstChild.nodeName
+        );
+    }
+</script>
+<script type="text/javascript">
+document.getElementById("demo1").onclick = function(){
+    alert(this);  // 显示 [object HTMLInputElement]
+}
+</script>
+</body>
+</html>

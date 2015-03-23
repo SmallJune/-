@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Ajax - Get</title>
+</head>
+<body>
+    <button id="btnAjax">不传递参数调用ajax()方法</button><br />
+    <button id="btnGet">不传递参数调用get()方法</button><br />
+    <button id="btnPost">不传递参数调用post()方法</button><br />
+    <button id="btnGet2">传递参数调用get()方法, 使用全局的默认回调函数</button><br />
+    <br />
+    <div id="divResult"></div>
+
+<script src="/static/js/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+        //或取csrftoken
+        function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            crossDomain: false, // obviates need for sameOrigin test
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type)) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        //开始
+        $(document).ready(function()
+        {
+            $.ajaxSetup({
+                url: "article/ajax/json/test",
+                data: { "data": "1" },
+                global: false,
+                type: "POST",
+                success: function(data, textStatus) { $("#divResult").html(data); }
+            });
+
+            $("#btnAjax").click(function(event) { $.ajax(); });
+            $("#btnGet").click(function(event) { $.get(); });
+            $("#btnPost").click(function(event) { $.post(); });
+            $("#btnGet2").click(function(event) { $.get("article/ajax/get/test/",{ "test": 1 }); });
+
+        });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="demo1">点击这里获取URL信息</div>
+<div id="demo2">跳转到IT学院首页</div>
+<div><input onclick="history.go(-1)" type="button" value="返回上一个页面"></div>
+<div><input onclick="window.close()" type="button" value="关闭窗口"></div>
+<div><input onclick="window.open()" type="button" value="打开一个新窗口"></div>
+<div><input onclick="alert('计算机屏幕分辨率：\n宽度：'+window.screen.width+'像素\n高度：'+window.screen.height+'像素')" type="button" value="查看屏幕尺寸"></div>
+<div><input onclick="alert('浏览器信息：\n名称：'+window.navigator.appName+'\n版本：'+window.navigator.appVersion+'\n操作系统：'+window.navigator.platform+'\n是否启用cookie：'+window.navigator.cookieEnabled)" type="button" value="浏览器信息"></div>
+<p id="demo">点击我将获得屏幕坐标</p>
+<script src="/examples/sea-modules/seajs/seajs/2.2.0/sea.js"></script>
+<script>
+
+  // Set configuration
+  seajs.config({
+    base: "/examples/sea-modules/",
+    alias: {
+      "jquery": "jquery/jquery/1.10.1/jquery.js"
+    },
+    vars: {
+        'locale': 'zh-cn'
+    }
+  });
+
+  // For development
+  seajs.use("/static/js/example3");
+
+
+</script>>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script  src="/var/www/ownjects/origingroup/static/js/lib/jquery-1.4.4-vsdoc.js"></script>
+
+
+</head>
+<body>
+  <ul>
+        <li style="cursor:pointer">click me</li>
+  </ul>
+<script type="text/javascript">
+        $(function()
+        {
+            $("li").toggle(
+              function()
+              {
+                  $(this).css({ "list-style-type": "disc", "color": "blue" });
+              },
+              function()
+              {
+                  $(this).css({ "list-style-type": "square", "color": "red" });
+              },
+              function()
+              {
+                  $(this).css({ "list-style-type": "none", "color": "" });
+              }
+            );
+        })
+    </script>
+</body>
+</html>

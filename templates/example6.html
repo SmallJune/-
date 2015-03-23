@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">事件绑定Demo</div>
+<script>
+function  fun(){
+    alert("事件绑定成功了！");
+}
+ if (window.attachEvent) {
+     document.getElementById("div1").attachEvent("onclick",fun);
+ }
+ else{
+     alert(222);
+     document.getElementById("div1").addEventListener("click",fun,false);
+ }
+</script>
+
+</body>
+</html>
